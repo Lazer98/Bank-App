@@ -27,4 +27,4 @@ myapp:
   secretKey: "MyVerySecretKeyThatNooneIsAllowedToSeeOrHearAbout123456789123456789123456789qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqscbhevbjhdfbvjevbjwbrebfhecbasndbkjwehcweubckhvbwebqxxknnknjhbwdaknhuhuwegfuwefwu"
 twilio:
   account_sid: ACb9575454db789763f45be893fc9d0966
-  auth_token: e9c98c4f662bb9a761bb1c5584d8b5d4
+  auth_token: a8669a7a4578b0d50822798258f8a59f
