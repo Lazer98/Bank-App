@@ -52,10 +52,8 @@ public class UserServiceImpl implements UserService {
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Value("${myapp.secretKey}")
-    private String secretKey;
 
-//    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+
 
 
     private static final String REST_COUNTRIES_URL = "https://restcountries.com/v3.1/name/";
