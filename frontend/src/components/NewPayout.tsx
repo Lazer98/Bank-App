@@ -89,13 +89,14 @@ const NewPayout: React.FC = () => {
     else if (showInput3) {
       setShowInput3(false);
       setShowInput4(true);
+      setShowInput6(true);
     } else if (showInput4) {
-      setShowInput4(false);
-      setShowInput5(true);
+      setShowInput4(false);  //not being used because I deleted the phone verification
+      setShowInput5(true);   //not being used because I deleted the phone verification
     }
     else if (showInput5) {
-      setShowInput5(false);
-      setShowInput6(true);
+      setShowInput5(false);   //not being used because I deleted the phone verification
+      setShowInput6(true);    //not being used because I deleted the phone verification
     }
   };
 
@@ -135,24 +136,25 @@ const NewPayout: React.FC = () => {
       setInput1Disabled(false);
     }
   };
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { value } = e.target;
-    setPhone(value);
-    console.log(user?.id);
 
-  };
+  // const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  //   const { value } = e.target;
+  //   setPhone(value);
+  //   console.log(user?.id);
 
-  const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { value } = e.target;
-    setCodeRecieved(value);
-    if (codeRandom === value) {
-      setInput6Disabled(false);
-      setShowCodeError(false); // Hide the error message if codes match
-    } else {
-      setInput6Disabled(true);
-      setShowCodeError(true); // Show the error message if codes don't match
-    }
-  };
+  // };
+
+  // const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  //   const { value } = e.target;
+  //   setCodeRecieved(value);
+  //   if (codeRandom === value) {
+  //     setInput6Disabled(false);
+  //     setShowCodeError(false); // Hide the error message if codes match
+  //   } else {
+  //     setInput6Disabled(true);
+  //     setShowCodeError(true); // Show the error message if codes don't match
+  //   }
+  // };
 
   const finishTransaction = async () => {
     console.log("send the api request to the back");
@@ -169,21 +171,21 @@ const NewPayout: React.FC = () => {
 
 
 
-  const handleSendSms = async () => {
-    handleButtonClick();
-    try {
-      console.log(phone);
-      const response = await axios.post('http://localhost:8088/users/twillio', phone);
-      const code = response.data.match(/\d{4}/); // Extract 4-digit code from response
-      console.log(code);
+  // const handleSendSms = async () => {
+  //   handleButtonClick();
+  //   try {
+  //     console.log(phone);
+  //     const response = await axios.post('http://localhost:8088/users/twillio', phone);
+  //     const code = response.data.match(/\d{4}/); // Extract 4-digit code from response
+  //     console.log(code);
 
-      if (code) {
-        setCodeRandom(code[0]); // Set the code in state as a string
-      }
-    } catch (error) {
-      console.error('Authentication failed:', error);
-    }
-  };
+  //     if (code) {
+  //       setCodeRandom(code[0]); // Set the code in state as a string
+  //     }
+  //   } catch (error) {
+  //     console.error('Authentication failed:', error);
+  //   }
+  // };
 
   const handleBankAccountClick = async () => {
     console.log("send the bank details in order to get the id of the bank account ");
@@ -239,7 +241,7 @@ const NewPayout: React.FC = () => {
         <input type="text" placeholder="Type here" name="reasonOfTransfer" value={formData.reasonOfTransfer} onChange={handleChange} className="shadow appearance-none border rounded w-full my-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
       {/* Input field 4 */}
-      <div className={`input ${showInput4 ? 'show' : ''}`}>
+      {/* <div className={`input ${showInput4 ? 'show' : ''}`}>
         <p className="text-white font-bold">Please enter your phone number</p>
         <input type="text" placeholder="Type here" name="phone number" value={phone} onChange={handlePhoneChange} className="shadow appearance-none border rounded w-full my-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
@@ -247,7 +249,7 @@ const NewPayout: React.FC = () => {
         <p className="text-white font-bold">Please enter the code you have recieved</p>
         <input type="number" placeholder="Type here" name="code" value={codeRecieved} onChange={handleCodeChange} className="shadow appearance-none border rounded w-full my-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
         {showCodeError && <p className="text-white font-bold">{codeError}</p>}
-      </div>
+      </div> */}
       <div className={`input ${showInput6 ? 'show' : ''}`}>
         <button onClick={finishTransaction}>Send the money</button>
       </div>
@@ -259,12 +261,12 @@ const NewPayout: React.FC = () => {
       {(showInput5 === false && showInput6 === false && showInput4 === false && showInput1 === false) &&
         <button onClick={handleButtonClick}>Next</button>
       }
-      {showInput4 &&
+     {/* {showInput4 &&
         <button onClick={handleSendSms}>Send me an sms</button>
       }
       {showInput5 &&
         <button disabled={input6Disabled} onClick={handleButtonClick}>Verify</button>
-      }
+      }*/}
     </div>
   );
 }
